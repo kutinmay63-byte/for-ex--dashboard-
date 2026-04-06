@@ -4,19 +4,22 @@
   <title>Dashboard</title>
 </head>
 
-<body style="font-family:Arial;background:#0f172a;color:white;text-align:center;padding-top:100px;">
+<body style="font-family:Arial;background:#0f172a;color:white;text-align:center;padding:20px;">
 
 <h1>Welcome to Kutin FX Dashboard 📊</h1>
 
-<p>Forex Signals & Updates will appear here</p>
+<h3>Live Signals</h3>
 
-<button onclick="logout()" style="padding:10px 20px;background:red;color:white;border:none;">
+<div id="signals"></div>
+
+<button onclick="logout()" style="padding:10px 20px;background:red;color:white;border:none;margin-top:20px;">
 Logout
 </button>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
@@ -27,7 +30,27 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
+// LOAD SIGNALS LIVE
+const container = document.getElementById("signals");
+
+onSnapshot(collection(db, "signals"), (snapshot) => {
+  container.innerHTML = "";
+  snapshot.forEach(doc => {
+    let data = doc.data();
+
+    container.innerHTML += `
+      <div style="background:#1e293b;margin:10px;padding:10px;border-radius:10px;">
+        <h3>${data.pair}</h3>
+        <p>${data.signal}</p>
+        <p>${data.note}</p>
+      </div>
+    `;
+  });
+});
+
+// logout
 window.logout = function () {
   signOut(auth).then(() => {
     window.location.href = "login.html";
