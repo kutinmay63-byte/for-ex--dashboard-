@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>VIP Upgrade - Kutin FX</title>
+</head>
+
+<body style="font-family:Arial;background:#0f172a;color:white;text-align:center;padding-top:80px;">
+
+<div style="background:#020617;padding:15px;font-size:22px;color:#38bdf8;font-weight:bold;">
+  VIP Upgrade 💳
+</div>
+
+<h2 style="margin-top:30px;">Unlock Premium Access</h2>
+
+<p style="color:#94a3b8;">Get advanced signals, strategies & mentorship</p>
+
+<div style="background:#1e293b;padding:20px;border-radius:10px;width:80%;max-width:400px;margin:auto;margin-top:20px;">
+
+  <h3 style="color:#fbbf24;">VIP Membership</h3>
+
+  <p>✔ Daily Premium Signals</p>
+  <p>✔ Advanced Trading Strategies</p>
+  <p>✔ Risk Management Guide</p>
+
+  <h2 style="color:#22c55e;">$10 / Month</h2>
+
+  <button onclick="unlockVIP()" style="padding:12px 20px;background:#22c55e;border:none;color:white;border-radius:8px;margin-top:10px;">
+    Pay & Unlock VIP
+  </button>
+
+  <p id="msg" style="margin-top:10px;"></p>
+
+</div>
+
+<br>
+
+<a href="dashboard.html" style="color:#38bdf8;">← Back to Dashboard</a>
+
+<script>
+function unlockVIP() {
+  document.getElementById("msg").innerText = "Processing payment...";
+
+  setTimeout(() => {
+    // 🔓 Unlock VIP (demo system)
+    localStorage.setItem("vip", "true");
+
+    document.getElementById("msg").innerText = "VIP Activated Successfully ✅";
+
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1500);
+
+  }, 1500);
+}
+</script>
+
+</body>
+</html>
