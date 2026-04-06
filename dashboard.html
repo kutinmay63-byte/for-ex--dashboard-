@@ -1,18 +1,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard - Kutin FX</title>
+  <title>Kutin FX Dashboard</title>
 </head>
 
-<body style="font-family:Arial;background:#0f172a;color:white;text-align:center;padding-top:80px;">
+<body style="font-family:Arial;background:#0f172a;color:white;margin:0;">
 
-<h2>Welcome to Dashboard 📊</h2>
+<!-- HEADER -->
+<div style="background:#020617;padding:15px;text-align:center;font-size:22px;color:#38bdf8;font-weight:bold;">
+  Kutin FX Academy 📊
+</div>
 
-<p id="userEmail" style="color:#38bdf8;"></p>
+<!-- USER SECTION -->
+<div style="text-align:center;padding:20px;">
+  <h2>Welcome Trader 👋</h2>
+  <p id="userEmail" style="color:#38bdf8;"></p>
 
-<button onclick="logout()" style="padding:10px 20px;background:#ef4444;border:none;color:white;margin-top:20px;">
-Logout
-</button>
+  <button onclick="logout()" style="padding:10px 20px;background:#ef4444;border:none;color:white;border-radius:6px;margin-top:10px;">
+    Logout
+  </button>
+</div>
+
+<!-- WHATSAPP JOIN -->
+<div style="text-align:center;margin-top:20px;">
+  <a href="https://chat.whatsapp.com/Dl92dBmtiZb6VnRfuQNPia?mode=gi_t"
+     style="display:inline-block;padding:12px 20px;background:#22c55e;color:white;text-decoration:none;border-radius:8px;font-weight:bold;">
+     Join WhatsApp Signals 📲
+  </a>
+</div>
+
+<!-- DASHBOARD CARDS -->
+<div style="display:flex;flex-direction:column;align-items:center;margin-top:30px;gap:15px;">
+
+  <div style="background:#1e293b;padding:15px;border-radius:10px;width:80%;max-width:400px;text-align:center;">
+    📈 Daily Forex Signals
+  </div>
+
+  <div style="background:#1e293b;padding:15px;border-radius:10px;width:80%;max-width:400px;text-align:center;">
+    🎓 Beginner Training Lessons
+  </div>
+
+  <div style="background:#1e293b;padding:15px;border-radius:10px;width:80%;max-width:400px;text-align:center;">
+    💡 Market Analysis Updates
+  </div>
+
+  <div style="background:#1e293b;padding:15px;border-radius:10px;width:80%;max-width:400px;text-align:center;">
+    📊 Risk Management Tips
+  </div>
+
+</div>
+
+<!-- FOOTER WARNING -->
+<div style="text-align:center;margin-top:30px;color:#94a3b8;font-size:12px;padding:20px;">
+  ⚠ Forex trading involves risk. Always learn before investing.
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -32,12 +73,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 🔐 CHECK LOGIN STATUS
+// 🔐 PROTECT DASHBOARD
 onAuthStateChanged(auth, (user) => {
   if (user) {
     document.getElementById("userEmail").innerText = "Logged in as: " + user.email;
   } else {
-    // NOT LOGGED IN → SEND TO LOGIN PAGE
     window.location.href = "login.html";
   }
 });
