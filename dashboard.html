@@ -1,20 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dashboard</title>
+  <title>Kutin FX Dashboard</title>
 </head>
 
-<body style="font-family:Arial;background:#0f172a;color:white;text-align:center;padding:20px;">
+<body style="font-family:Arial;background:#0f172a;color:white;margin:0;">
 
-<h1>Welcome to Kutin FX Dashboard 📊</h1>
+<!-- HEADER -->
+<div style="background:#020617;padding:15px;text-align:center;font-size:20px;color:#38bdf8;">
+  Kutin FX Dashboard 📊
+</div>
 
-<h3>Live Signals</h3>
+<!-- WELCOME -->
+<div style="text-align:center;padding:20px;">
+  <h2>Welcome Trader 👋</h2>
+  <p>Live Forex Signals + Tools</p>
+</div>
 
-<div id="signals"></div>
+<!-- SIGNALS -->
+<div style="padding:10px;text-align:center;">
+  <h3>Live Signals</h3>
+  <div id="signals"></div>
+</div>
 
-<button onclick="logout()" style="padding:10px 20px;background:red;color:white;border:none;margin-top:20px;">
-Logout
-</button>
+<!-- INVESTMENT UI -->
+<div style="padding:20px;text-align:center;">
+  <h3>Investment Panel 💰</h3>
+
+  <input id="amount" placeholder="Enter Amount ($)" style="padding:10px;margin:5px;"><br>
+
+  <select id="plan" style="padding:10px;margin:5px;">
+    <option value="0.1">10% Daily Profit</option>
+    <option value="0.2">20% Daily Profit</option>
+    <option value="0.3">30% Daily Profit</option>
+  </select><br>
+
+  <button onclick="calc()" style="padding:10px 20px;background:#22c55e;border:none;">
+    Calculate Profit
+  </button>
+
+  <p id="result"></p>
+</div>
+
+<!-- LOGOUT -->
+<div style="text-align:center;padding:20px;">
+  <button onclick="logout()" style="padding:10px 20px;background:red;color:white;border:none;">
+    Logout
+  </button>
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -32,25 +65,43 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// LOAD SIGNALS LIVE
+// LOAD SIGNALS
 const container = document.getElementById("signals");
 
 onSnapshot(collection(db, "signals"), (snapshot) => {
   container.innerHTML = "";
+
   snapshot.forEach(doc => {
-    let data = doc.data();
+    let d = doc.data();
 
     container.innerHTML += `
       <div style="background:#1e293b;margin:10px;padding:10px;border-radius:10px;">
-        <h3>${data.pair}</h3>
-        <p>${data.signal}</p>
-        <p>${data.note}</p>
+        <h3>${d.pair}</h3>
+        <p>${d.signal}</p>
+        <p>${d.note}</p>
       </div>
     `;
   });
 });
 
-// logout
+// PROFIT CALCULATOR
+window.calc = function () {
+  let amount = parseFloat(document.getElementById("amount").value);
+  let rate = parseFloat(document.getElementById("plan").value);
+
+  if (!amount) {
+    document.getElementById("result").innerText = "Enter valid amount";
+    return;
+  }
+
+  let profit = amount * rate;
+  let total = amount + profit;
+
+  document.getElementById("result").innerText =
+    "Daily Profit: $" + profit + " | Total: $" + total;
+};
+
+// LOGOUT
 window.logout = function () {
   signOut(auth).then(() => {
     window.location.href = "login.html";
