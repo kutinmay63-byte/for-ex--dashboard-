@@ -6,12 +6,18 @@
 
 <body style="font-family:Arial;background:#0f172a;color:white;text-align:center;padding:40px;">
 
-<h2>Sign Up</h2>
+<h2 style="color:#38bdf8;">Create Account</h2>
 
-<input id="email" type="email" placeholder="Email"><br><br>
-<input id="password" type="password" placeholder="Password"><br><br>
+<input id="email" type="email" placeholder="Enter Email"
+  style="padding:10px;width:250px;margin:10px;border-radius:5px;border:none;"><br>
 
-<button onclick="signupUser()">Sign Up</button>
+<input id="password" type="password" placeholder="Enter Password"
+  style="padding:10px;width:250px;margin:10px;border-radius:5px;border:none;"><br>
+
+<button onclick="signupUser()"
+  style="padding:10px 20px;background:#22c55e;color:white;border:none;border-radius:5px;font-weight:bold;cursor:pointer;">
+  Sign Up
+</button>
 
 <p id="msg"></p>
 
@@ -27,8 +33,7 @@ const firebaseConfig = {
   projectId: "kutinfx-e0e5b",
   storageBucket: "kutinfx-e0e5b.firebasestorage.app",
   messagingSenderId: "292559932570",
-  appId: "1:292559932570:web:07a9baf6596b8ad695e323",
-  measurementId: "G-0WRPF3STXV"
+  appId: "1:292559932570:web:07a9baf6596b8ad695e323"
 };
 
 const app = initializeApp(firebaseConfig);
@@ -41,16 +46,31 @@ window.signupUser = function () {
   let password = document.getElementById("password").value.trim();
   let msg = document.getElementById("msg");
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+  // Basic validation
+  if (!email || !password) {
+    msg.style.color = "red";
+    msg.innerText = "Please fill all fields";
+    return;
+  }
 
-      setDoc(doc(db, "users", userCredential.user.uid), {
+  if (password.length < 6) {
+    msg.style.color = "red";
+    msg.innerText = "Password must be at least 6 characters";
+    return;
+  }
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then(async (userCredential) => {
+
+      // Save user in Firestore
+      await setDoc(doc(db, "users", userCredential.user.uid), {
         email: email,
-        vip: false
+        vip: false,
+        createdAt: new Date()
       });
 
       msg.style.color = "lightgreen";
-      msg.innerText = "Account created! Redirecting...";
+      msg.innerText = "Account created successfully! Redirecting...";
 
       setTimeout(() => {
         window.location.href = "login.html";
@@ -67,4 +87,4 @@ window.signupUser = function () {
 </script>
 
 </body>
-</html>
+</html> 
