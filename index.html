@@ -1,25 +1,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Login - Kutin FX</title>
+<title>Kutin FX Login</title>
+
 <style>
-body {font-family:Arial;background:#0b1220;color:white;text-align:center;padding:50px;}
-input {padding:10px;margin:5px;width:200px;}
-button {padding:10px 20px;margin-top:10px;cursor:pointer;}
-.box {background:#111827;padding:30px;border-radius:10px;display:inline-block;}
+body {
+  font-family: Arial;
+  background: #0b1220;
+  color: white;
+  text-align: center;
+  padding: 50px;
+}
+
+.box {
+  background: #111827;
+  padding: 30px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+input {
+  padding: 10px;
+  margin: 8px;
+  width: 220px;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login { background: #38bdf8; }
+.signup { background: green; color: white; }
 </style>
 </head>
 
 <body>
 
 <div class="box">
-<h2>Kutin FX Login</h2>
+<h2>Kutin FX</h2>
 
 <input id="user" placeholder="Username"><br>
 <input id="pass" type="password" placeholder="Password"><br>
 
-<button onclick="login()">Login</button>
-<button onclick="signup()">Sign Up</button>
+<button class="login" onclick="login()">Login</button>
+<button class="signup" onclick="signup()">Sign Up</button>
 </div>
 
 <script>
@@ -27,8 +57,13 @@ function signup(){
   let u = document.getElementById("user").value;
   let p = document.getElementById("pass").value;
 
+  if(u === "" || p === ""){
+    alert("Fill all fields");
+    return;
+  }
+
   localStorage.setItem(u, p);
-  alert("Account created!");
+  alert("Account created successfully!");
 }
 
 function login(){
@@ -47,4 +82,4 @@ function login(){
 </script>
 
 </body>
-</html>
+</html> 
