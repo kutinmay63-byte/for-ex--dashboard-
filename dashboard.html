@@ -59,6 +59,7 @@ body {
   border-radius: 10px;
 }
 
+/* GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -66,10 +67,16 @@ body {
   margin-top: 20px;
 }
 
+/* CARDS */
 .card {
-  background: #111827;
+  background: linear-gradient(145deg, #111827, #1f2937);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
 }
 
 .vip {
@@ -96,11 +103,61 @@ input, select {
   background: #38bdf8;
   border: none;
   cursor: pointer;
+  width: 100%;
 }
 
 .result {
   margin-top: 10px;
   color: yellow;
+}
+
+/* PLAN SECTION */
+.plan-box {
+  background: #111827;
+  padding: 20px;
+  border-radius: 12px;
+  margin-top: 30px;
+}
+
+.plan-title {
+  color: #38bdf8;
+  margin-bottom: 15px;
+}
+
+.plan-title.gold {
+  color: #facc15;
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 10px;
+}
+
+.plan-card {
+  background: linear-gradient(145deg, #1f2937, #111827);
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid #374151;
+  transition: 0.3s;
+}
+
+.plan-card:hover {
+  transform: scale(1.05);
+  border-color: #38bdf8;
+}
+
+/* WHATSAPP BUTTON */
+.whatsapp {
+  margin-top: 10px;
+  background: #25D366;
+  color: white;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 5px;
 }
 </style>
 </head>
@@ -121,21 +178,25 @@ input, select {
 
 <div class="container">
 
+<!-- USER -->
 <div class="user-box">
   <h3>Welcome, <span id="user"></span></h3>
   <p>Status: Active</p>
 </div>
 
+<!-- CARDS -->
 <div class="grid">
   <div class="card">💰 Deposit</div>
   <div class="card">🏧 Withdraw</div>
   <div class="card vip">🔥 VIP Section</div>
+
   <div class="card">
     📲 WhatsApp Group  
-    <button onclick="join()">Join</button>
+    <button class="whatsapp" onclick="join()">Join Now</button>
   </div>
 </div>
 
+<!-- INVEST -->
 <div class="invest">
 <h3>Deposit / Invest</h3>
 
@@ -150,6 +211,36 @@ input, select {
 <button class="calc" onclick="calc()">Calculate</button>
 
 <div class="result" id="result"></div>
+</div>
+
+<!-- INVESTMENT PLANS -->
+
+<h2 style="margin-top:40px;color:#38bdf8;">📊 Investment Plans</h2>
+
+<!-- 24 HOURS -->
+<div class="plan-box">
+  <h3 class="plan-title">⚡ 24 Hour Wealth Plans</h3>
+
+  <div class="plan-grid">
+    <div class="plan-card"><b>£400</b><br>➡ £8000</div>
+    <div class="plan-card"><b>£500</b><br>➡ £10000</div>
+    <div class="plan-card"><b>£600</b><br>➡ £12000</div>
+    <div class="plan-card"><b>£700</b><br>➡ £14000</div>
+    <div class="plan-card"><b>£800</b><br>➡ £16000</div>
+  </div>
+</div>
+
+<!-- 3 DAYS -->
+<div class="plan-box">
+  <h3 class="plan-title gold">💎 3 Days Wealth Plans</h3>
+
+  <div class="plan-grid">
+    <div class="plan-card"><b>£1000</b><br>➡ £30000</div>
+    <div class="plan-card"><b>£2000</b><br>➡ £60000</div>
+    <div class="plan-card"><b>£3000</b><br>➡ £90000</div>
+    <div class="plan-card"><b>£4000</b><br>➡ £120000</div>
+    <div class="plan-card"><b>£5000</b><br>➡ £150000</div>
+  </div>
 </div>
 
 </div>
