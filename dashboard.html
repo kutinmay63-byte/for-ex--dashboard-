@@ -28,7 +28,6 @@ body {
   color: #38bdf8;
 }
 
-/* MENU TOP RIGHT */
 .menu {
   display: flex;
   gap: 15px;
@@ -47,7 +46,6 @@ body {
   background: #1f2937;
 }
 
-/* BUTTON */
 button {
   padding: 8px 12px;
   border: none;
@@ -62,7 +60,6 @@ button {
   padding: 30px;
 }
 
-/* WELCOME */
 h2 {
   color: #38bdf8;
 }
@@ -94,10 +91,40 @@ h2 {
   font-weight: bold;
 }
 
-/* VIP BOX */
+/* VIP */
 .vip {
   border: 2px dashed #facc15;
   background: #1f2937;
+}
+
+/* INVEST SECTION */
+.invest-box {
+  background: #111827;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: none;
+}
+
+.calc-btn {
+  background: #38bdf8;
+  color: black;
+  font-weight: bold;
+  width: 100%;
+}
+
+/* RESULT */
+.result {
+  margin-top: 10px;
+  color: #facc15;
+  font-size: 18px;
 }
 </style>
 </head>
@@ -122,7 +149,7 @@ h2 {
 
 <h2>Welcome, <span id="user"></span></h2>
 
-<!-- ACTION CARDS -->
+<!-- MAIN CARDS -->
 <div class="grid">
 
   <div class="card">💰 Deposit Section</div>
@@ -131,7 +158,28 @@ h2 {
 
 </div>
 
-<!-- PRICING SECTION -->
+<!-- INVEST / DEPOSIT SECTION -->
+<div class="invest-box">
+
+<h3 style="color:#38bdf8;">💳 Deposit / Invest</h3>
+
+<label>Enter Amount ($)</label>
+<input type="number" id="amount" placeholder="e.g. 100">
+
+<label>Select Plan</label>
+<select id="plan">
+  <option value="0.2">Starter (20% profit)</option>
+  <option value="0.5">Pro (50% profit)</option>
+  <option value="1">VIP (100% profit)</option>
+</select>
+
+<button class="calc-btn" onclick="calculate()">Calculate Profit</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<!-- PRICING -->
 <h2 style="margin-top:40px;">Pricing Plans</h2>
 
 <div class="grid">
@@ -151,7 +199,7 @@ h2 {
   <div class="card">
     <h3>VIP Plan</h3>
     <p class="price">$500</p>
-    <p>Premium features (signals + tools)</p>
+    <p>Premium features</p>
   </div>
 
 </div>
@@ -167,11 +215,29 @@ if(!user){
 
 document.getElementById("user").innerText = user;
 
+/* LOGOUT */
 function logout(){
   localStorage.removeItem("loggedUser");
   window.location.href = "index.html";
 }
+
+/* PROFIT CALCULATOR */
+function calculate(){
+  let amount = document.getElementById("amount").value;
+  let rate = document.getElementById("plan").value;
+
+  if(amount === "" || amount <= 0){
+    document.getElementById("result").innerText = "Enter valid amount";
+    return;
+  }
+
+  let profit = amount * rate;
+  let total = parseFloat(amount) + parseFloat(profit);
+
+  document.getElementById("result").innerText =
+    "Profit: $" + profit + " | Total: $" + total;
+}
 </script>
 
 </body>
-</html>
+</html> 
