@@ -4,26 +4,22 @@
   <title>Sign Up - Kutin FX</title>
 </head>
 
-<body style="font-family:Arial;background:#0f172a;color:white;text-align:center;padding-top:80px;">
+<body style="font-family:Arial;background:#0f172a;color:white;text-align:center;padding:40px;">
 
-<h2>Create Account 🧾</h2>
+<h2>Sign Up</h2>
 
-<input id="email" placeholder="Email" style="padding:10px;margin:5px;width:250px;"><br>
-<input id="password" type="password" placeholder="Password" style="padding:10px;margin:5px;width:250px;"><br>
+<input id="email" type="email" placeholder="Email"><br><br>
+<input id="password" type="password" placeholder="Password"><br><br>
 
-<button onclick="signup()" style="padding:10px 20px;background:#22c55e;border:none;margin-top:10px;">
-Sign Up
-</button>
+<button onclick="signupUser()">Sign Up</button>
 
 <p id="msg"></p>
 
-<br>
-<a href="login.html" style="color:#38bdf8;">Already have an account? Login</a>
-
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCuhE2B1DBg_ibkyOXdTH7a-BqlHWxaSQM",
@@ -39,28 +35,35 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-window.signup = async function () {
-  let email = document.getElementById("email").value;
-  let password = document.getElementById("password").value;
+window.signupUser = function () {
 
-  try {
-    const userCred = await createUserWithEmailAndPassword(auth, email, password);
+  let email = document.getElementById("email").value.trim();
+  let password = document.getElementById("password").value.trim();
+  let msg = document.getElementById("msg");
 
-    await setDoc(doc(db, "users", userCred.user.uid), {
-      email: email,
-      vip: false
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+
+      setDoc(doc(db, "users", userCredential.user.uid), {
+        email: email,
+        vip: false
+      });
+
+      msg.style.color = "lightgreen";
+      msg.innerText = "Account created! Redirecting...";
+
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 1500);
+
+    })
+    .catch((error) => {
+      msg.style.color = "red";
+      msg.innerText = error.message;
     });
 
-    document.getElementById("msg").innerText = "Account created ✅";
-
-    setTimeout(() => {
-      window.location.href = "login.html";
-    }, 1500);
-
-  } catch (error) {
-    document.getElementById("msg").innerText = error.message;
-  }
 };
+
 </script>
 
 </body>
