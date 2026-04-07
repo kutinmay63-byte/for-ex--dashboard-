@@ -1,146 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<title>Kutin FX Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- ✅ FIX MOBILE SMALL TEXT -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b1220;
+  color: white;
+}
 
-  <title>Kutin FX Academy</title>
+/* TOP NAV */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  background: #0f172a;
+  position: sticky;
+  top: 0;
+}
 
-  <style>
-    body {
-      font-family: Arial;
-      background: #0f172a;
-      color: white;
-      margin: 0;
-    }
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #38bdf8;
+}
 
-    /* HEADER */
-    .header {
-      background: #020617;
-      padding: 18px;
-      text-align: center;
-      font-size: 22px;
-      color: #38bdf8;
-      font-weight: bold;
-    }
+.menu a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 14px;
+}
 
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 50px 20px;
-    }
+.menu a:hover {
+  color: #38bdf8;
+}
 
-    .hero h1 {
-      color: #38bdf8;
-      font-size: 30px;
-      margin-bottom: 10px;
-    }
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
 
-    .hero p {
-      color: #cbd5e1;
-      font-size: 16px;
-    }
+.hero h1 {
+  font-size: 40px;
+  color: #38bdf8;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 14px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 16px;
-    }
+.hero p {
+  color: #cbd5e1;
+}
 
-    .btn-green {
-      background: #22c55e;
-      color: white;
-    }
+/* BUTTONS */
+.btn {
+  padding: 10px 18px;
+  margin: 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-    .btn-blue {
-      background: #38bdf8;
-      color: black;
-    }
+.deposit { background: green; color: white; }
+.withdraw { background: red; color: white; }
 
-    /* SECTION */
-    .section {
-      text-align: center;
-      padding: 20px;
-    }
+/* CARDS */
+.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
 
-    .card {
-      background: #1e293b;
-      margin: 10px auto;
-      padding: 18px;
-      border-radius: 12px;
-      max-width: 400px;
-      font-size: 16px;
-    }
+.card {
+  background: #111827;
+  padding: 20px;
+  margin: 10px;
+  width: 250px;
+  border-radius: 10px;
+  text-align: center;
+}
 
-    /* AUTH BOX */
-    .auth {
-      text-align: center;
-      padding: 30px 20px;
-    }
+.price {
+  font-size: 22px;
+  color: #38bdf8;
+}
 
-    .auth h2 {
-      font-size: 24px;
-    }
-
-    .warning {
-      text-align: center;
-      padding: 20px;
-      color: #94a3b8;
-      font-size: 13px;
-    }
-  </style>
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  margin-top: 40px;
+  background: #0f172a;
+}
+</style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  Kutin FX Academy 📊
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">KUTIN FX</div>
+
+  <div class="menu">
+    <a href="#">Home</a>
+    <a href="#">Pricing</a>
+    <a href="#">Deposit</a>
+    <a href="#">Withdraw</a>
+    <a href="#">Support</a>
+  </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
-  <h1>Learn Forex Trading Easily</h1>
-  <p>Signals • Training • Market Updates</p>
+  <h1>Smart Trading Dashboard</h1>
+  <p>Manage your investment, deposit funds, and withdraw profits easily.</p>
 
-  <a class="btn btn-green"
-     href="https://chat.whatsapp.com/Dl92dBmtiZb6VnRfuQNPia?mode=gi_t">
-     Join WhatsApp Group
-  </a>
+  <button class="btn deposit">Deposit</button>
+  <button class="btn withdraw">Withdraw</button>
 </div>
 
-<!-- LOGIN / SIGNUP -->
-<div class="auth">
+<!-- PRICING -->
+<div class="container">
 
-  <h2>Member Access 🔐</h2>
-  <p style="color:#cbd5e1;">Login or create an account to access dashboard</p>
+  <div class="card">
+    <h3>Starter Plan</h3>
+    <p class="price">$50</p>
+    <p>Basic trading access</p>
+  </div>
 
-  <br>
+  <div class="card">
+    <h3>Pro Plan</h3>
+    <p class="price">$200</p>
+    <p>Advanced trading tools</p>
+  </div>
 
-  <a class="btn btn-blue" href="login.html">Login</a>
-  <a class="btn btn-green" href="signup.html">Sign Up</a>
+  <div class="card">
+    <h3>VIP Plan</h3>
+    <p class="price">$500</p>
+    <p>Full AI trading system</p>
+  </div>
 
 </div>
 
-<!-- FEATURES -->
-<div class="section">
-
-  <div class="card">📈 Forex Training for Beginners</div>
-  <div class="card">💡 Daily Market Signals</div>
-  <div class="card">📊 Trading Guidance & Mentorship</div>
-
-</div>
-
-<!-- WARNING -->
-<div class="warning">
-  ⚠️ Forex trading involves risk. Always learn before investing.
-</div>
+<!-- FOOTER -->
+<footer>
+  © 2026 Kutin FX Academy | All Rights Reserved
+</footer>
 
 </body>
-</html>
+</html> 
