@@ -19,18 +19,19 @@
   Login
 </button>
 
-<p id="msg" style="color:#f87171;"></p>
+<p id="msg"></p>
 
-<!-- FIREBASE -->
 <script type="module">
+
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
   import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
+  // 🔥 PUT YOUR FIREBASE CONFIG HERE (from Firebase website)
   const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "PASTE_YOUR_API_KEY_HERE",
+    authDomain: "PASTE_YOUR_AUTH_DOMAIN_HERE",
+    projectId: "PASTE_YOUR_PROJECT_ID_HERE",
+    appId: "PASTE_YOUR_APP_ID_HERE"
   };
 
   const app = initializeApp(firebaseConfig);
@@ -40,11 +41,10 @@
 
     let email = document.getElementById("email").value.trim();
     let password = document.getElementById("password").value.trim();
-
     let msg = document.getElementById("msg");
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(() => {
         msg.style.color = "lightgreen";
         msg.innerText = "Login successful... Redirecting";
 
@@ -53,10 +53,12 @@
         }, 1500);
       })
       .catch((error) => {
+        msg.style.color = "red";
         msg.innerText = error.message;
       });
 
   }
+
 </script>
 
 </body>
