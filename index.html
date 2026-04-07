@@ -1,175 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Kutin FX Dashboard</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>Login - Kutin FX</title>
 <style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0b1220;
-  color: white;
-}
-
-/* NAV */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 20px;
-  background: #0f172a;
-}
-
-.logo {
-  color: #38bdf8;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.menu a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-}
-
-.menu a:hover {
-  color: #38bdf8;
-}
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 50px 20px;
-}
-
-.hero h1 {
-  color: #38bdf8;
-}
-
-/* BUTTONS */
-.btn {
-  padding: 10px 15px;
-  margin: 5px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.deposit { background: green; color: white; }
-.withdraw { background: red; color: white; }
-
-/* SECTIONS */
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 20px;
-}
-
-.card {
-  background: #111827;
-  padding: 20px;
-  margin: 10px;
-  width: 250px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-.price {
-  color: #38bdf8;
-  font-size: 22px;
-}
-
-/* VIP SECTION (NOT LOCKED) */
-.vip-section {
-  margin: 40px auto;
-  max-width: 900px;
-  text-align: center;
-  padding: 30px;
-  border: 2px dashed #facc15;
-  border-radius: 12px;
-  background: #1f2937;
-}
-
-.vip-title {
-  color: #facc15;
-  font-size: 24px;
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #0f172a;
-  margin-top: 40px;
-}
+body {font-family:Arial;background:#0b1220;color:white;text-align:center;padding:50px;}
+input {padding:10px;margin:5px;width:200px;}
+button {padding:10px 20px;margin-top:10px;cursor:pointer;}
+.box {background:#111827;padding:30px;border-radius:10px;display:inline-block;}
 </style>
 </head>
 
 <body>
 
-<!-- NAV -->
-<div class="navbar">
-  <div class="logo">KUTIN FX</div>
-  <div class="menu">
-    <a href="#">Home</a>
-    <a href="#">Pricing</a>
-    <a href="#">Deposit</a>
-    <a href="#">Withdraw</a>
-    <a href="#">VIP</a>
-  </div>
+<div class="box">
+<h2>Kutin FX Login</h2>
+
+<input id="user" placeholder="Username"><br>
+<input id="pass" type="password" placeholder="Password"><br>
+
+<button onclick="login()">Login</button>
+<button onclick="signup()">Sign Up</button>
 </div>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>Welcome to Kutin FX Platform</h1>
-  <p>Everything is open. Explore all features below.</p>
+<script>
+function signup(){
+  let u = document.getElementById("user").value;
+  let p = document.getElementById("pass").value;
 
-  <button class="btn deposit">Deposit</button>
-  <button class="btn withdraw">Withdraw</button>
-</div>
+  localStorage.setItem(u, p);
+  alert("Account created!");
+}
 
-<!-- PRICING -->
-<div class="container">
+function login(){
+  let u = document.getElementById("user").value;
+  let p = document.getElementById("pass").value;
 
-  <div class="card">
-    <h3>Starter</h3>
-    <p class="price">$50</p>
-    <p>Beginner tools</p>
-  </div>
+  let stored = localStorage.getItem(u);
 
-  <div class="card">
-    <h3>Pro</h3>
-    <p class="price">$200</p>
-    <p>Advanced tools</p>
-  </div>
-
-  <div class="card">
-    <h3>VIP Plan</h3>
-    <p class="price">$500</p>
-    <p>Premium features (optional upgrade)</p>
-  </div>
-
-</div>
-
-<!-- VIP SECTION (VISIBLE TO ALL) -->
-<div class="vip-section">
-  <div class="vip-title">🔥 VIP SECTION (OPEN VIEW)</div>
-  <p>
-    This is where VIP content will be displayed.  
-    Right now everyone can see it because access is open.
-  </p>
-
-  <p>
-    Future upgrades can include signals, bots, or premium training.
-  </p>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  © 2026 Kutin FX Academy | All rights reserved
-</footer>
+  if(stored && stored === p){
+    localStorage.setItem("loggedUser", u);
+    window.location.href = "dashboard.html";
+  } else {
+    alert("User data not found or wrong password");
+  }
+}
+</script>
 
 </body>
-</html> 
+</html>
