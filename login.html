@@ -1,15 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+
+  <!-- ✅ FIX SMALL TEXT ON PHONE -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Login - Kutin FX</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      padding: 14px;
+      width: 90%;
+      max-width: 320px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 14px 25px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      width: 90%;
+      max-width: 320px;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    #msg {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+  </style>
 </head>
 
-<body style="font-family:Arial;background:#0f172a;color:white;text-align:center;padding:40px;">
+<body>
 
 <h2>Login</h2>
 
-<input id="email" type="email" placeholder="Email"><br><br>
-<input id="password" type="password" placeholder="Password"><br><br>
+<input id="email" type="email" placeholder="Enter Email">
+<br>
+
+<input id="password" type="password" placeholder="Enter Password">
+<br>
 
 <button onclick="loginUser()">Login</button>
 
@@ -26,38 +82,43 @@ const firebaseConfig = {
   projectId: "kutinfx-e0e5b",
   storageBucket: "kutinfx-e0e5b.firebasestorage.app",
   messagingSenderId: "292559932570",
-  appId: "1:292559932570:web:07a9baf6596b8ad695e323",
-  measurementId: "G-0WRPF3STXV"
+  appId: "1:292559932570:web:07a9baf6596b8ad695e323"
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-window.loginUser = function () {
+window.loginUser = async function () {
 
   let email = document.getElementById("email").value.trim();
   let password = document.getElementById("password").value.trim();
   let msg = document.getElementById("msg");
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
+  if (!email || !password) {
+    msg.style.color = "red";
+    msg.innerText = "Please fill all fields";
+    return;
+  }
 
-      msg.style.color = "lightgreen";
-      msg.innerText = "Login successful...";
+  try {
 
-      setTimeout(() => {
-        window.location.href = "dashboard.html";
-      }, 1500);
+    await signInWithEmailAndPassword(auth, email, password);
 
-    })
-    .catch((error) => {
-      msg.style.color = "red";
-      msg.innerText = error.message;
-    });
+    msg.style.color = "lightgreen";
+    msg.innerText = "Login successful... Redirecting";
+
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1500);
+
+  } catch (error) {
+    msg.style.color = "red";
+    msg.innerText = error.message;
+  }
 
 };
 
 </script>
 
 </body>
-</html>
+</html> 
