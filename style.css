@@ -1,101 +1,110 @@
-/* GLOBAL STYLE */
+/* GLOBAL */
 body {
   background: #0b0f1a;
   color: white;
   font-family: Arial, sans-serif;
-  padding: 15px;
+  padding: 20px;
   margin: 0;
-  font-size: 18px;
+
+  /* 🔥 BIG TEXT FIX */
+  font-size: 22px;
+  line-height: 1.6;
 }
 
 /* MAIN TITLE */
-h2 {
-  margin-bottom: 20px;
-  font-size: 28px;
+h1 {
+  font-size: 38px;
+  margin-bottom: 10px;
   color: #38bdf8;
 }
 
-/* CARD DESIGN */
+h2 {
+  font-size: 32px;
+  margin-bottom: 15px;
+  color: #38bdf8;
+}
+
+h3 {
+  font-size: 26px;
+}
+
+/* CARD */
 .card {
   background: #1a1f2e;
-  padding: 18px;
-  margin-bottom: 15px;
-  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 18px;
+  border-radius: 14px;
   box-shadow: 0 0 12px rgba(0,0,0,0.5);
-  transition: 0.3s;
 }
 
-/* CARD HOVER EFFECT */
-.card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
-}
-
-/* CARD TITLE */
+/* CARD TEXT */
 .card h3 {
   margin: 0;
-  font-size: 18px;
-  color: #ffffff;
+  font-size: 24px;
 }
 
-/* CARD VALUE */
 .card p {
-  font-size: 20px;
+  font-size: 22px;
   margin-top: 8px;
   color: #00ff9d;
   font-weight: bold;
 }
 
-/* BUTTON STYLE */
+/* BUTTONS */
 button {
   background: #38bdf8;
   color: black;
   border: none;
-  padding: 10px 15px;
-  border-radius: 8px;
+  padding: 14px 18px;
+  border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
-  transition: 0.3s;
+  font-size: 18px;
 }
 
 button:hover {
   background: #0ea5e9;
-  transform: scale(1.05);
 }
 
-/* VIP BADGE */
+/* VIP */
 .vip {
   background: gold;
   color: black;
-  padding: 5px 10px;
-  border-radius: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
   font-weight: bold;
   display: inline-block;
   margin-top: 10px;
+  font-size: 18px;
 }
 
-/* STATUS TEXT */
+/* STATUS */
 .status {
-  font-size: 16px;
+  font-size: 20px;
   color: #94a3b8;
 }
 
-/* MOBILE RESPONSIVE */
+/* MOBILE FIX (VERY IMPORTANT) */
 @media (max-width: 600px) {
   body {
-    font-size: 16px;
-    padding: 10px;
+    font-size: 24px;
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 40px;
   }
 
   h2 {
-    font-size: 24px;
-  }
-
-  .card {
-    padding: 14px;
+    font-size: 34px;
   }
 
   .card p {
-    font-size: 18px;
+    font-size: 24px;
   }
-}
+
+  button {
+    font-size: 20px;
+    padding: 16px 20px;
+  }
+} 
