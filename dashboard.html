@@ -1,270 +1,255 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Dashboard - Kutin FX</title>
+<title>KUTIN FX Dashboard</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0b1220;
-  color: white;
+body{
+  margin:0;
+  font-family:Arial;
+  background:#0b1220;
+  color:white;
 }
 
-/* NAV */
-.nav {
-  background: #0f172a;
-  padding: 15px 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* TOP NAV */
+.nav{
+  background:#0f172a;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
-.logo {
-  color: #38bdf8;
-  font-weight: bold;
+.logo{
+  color:#38bdf8;
+  font-weight:bold;
+  font-size:20px;
 }
 
-.menu {
-  display: flex;
-  gap: 15px;
+.logout{
+  background:red;
+  border:none;
+  color:white;
+  padding:8px 12px;
+  border-radius:6px;
 }
 
-.menu a {
-  color: white;
-  text-decoration: none;
+/* DASHBOARD HEADER */
+.header{
+  padding:20px;
 }
 
-.menu a:hover {
-  color: #38bdf8;
+.balance-box{
+  background:linear-gradient(145deg,#111827,#1f2937);
+  padding:20px;
+  border-radius:15px;
+  margin-bottom:15px;
 }
 
-.logout {
-  background: red;
-  padding: 8px 12px;
-  border: none;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+.balance{
+  font-size:28px;
+  color:#00ff9d;
+  font-weight:bold;
 }
 
-/* CONTENT */
-.container {
-  padding: 20px;
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:10px;
 }
 
-.user-box {
-  background: #111827;
-  padding: 20px;
-  border-radius: 10px;
+.card{
+  background:#111827;
+  padding:15px;
+  border-radius:12px;
+  text-align:center;
+  transition:0.3s;
 }
 
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
+.card:hover{
+  transform:scale(1.05);
 }
 
-/* CARDS */
-.card {
-  background: linear-gradient(145deg, #111827, #1f2937);
-  padding: 20px;
-  border-radius: 12px;
-  transition: 0.3s;
+.vip{
+  border:2px solid gold;
 }
 
-.card:hover {
-  transform: translateY(-5px);
+/* BUTTONS */
+.btn{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border:none;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.vip {
-  border: 2px dashed gold;
+.invest-btn{
+  background:#38bdf8;
+  color:black;
 }
 
-/* INVEST */
-.invest {
-  background: #111827;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
+.whatsapp-btn{
+  background:#25D366;
+  color:white;
 }
 
-input, select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
+/* INVEST SECTION */
+.section{
+  padding:20px;
 }
 
-.calc {
-  margin-top: 10px;
-  padding: 10px;
-  background: #38bdf8;
-  border: none;
-  cursor: pointer;
-  width: 100%;
+.box{
+  background:#111827;
+  padding:20px;
+  border-radius:12px;
+  margin-top:15px;
 }
 
-.result {
-  margin-top: 10px;
-  color: yellow;
+input,select{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+  border-radius:6px;
+  border:none;
 }
 
-/* PLAN SECTION */
-.plan-box {
-  background: #111827;
-  padding: 20px;
-  border-radius: 12px;
-  margin-top: 30px;
+/* PLAN */
+.plan{
+  margin-top:10px;
+  background:#1f2937;
+  padding:12px;
+  border-radius:10px;
 }
 
-.plan-title {
-  color: #38bdf8;
-  margin-bottom: 15px;
+.plan h3{
+  color:#38bdf8;
 }
 
-.plan-title.gold {
-  color: #facc15;
+.plan.vip h3{
+  color:gold;
 }
 
-.plan-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 10px;
+.plan-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:10px;
 }
 
-.plan-card {
-  background: linear-gradient(145deg, #1f2937, #111827);
-  padding: 15px;
-  border-radius: 10px;
-  text-align: center;
-  border: 1px solid #374151;
-  transition: 0.3s;
-}
-
-.plan-card:hover {
-  transform: scale(1.05);
-  border-color: #38bdf8;
-}
-
-/* WHATSAPP BUTTON */
-.whatsapp {
-  margin-top: 10px;
-  background: #25D366;
-  color: white;
-  padding: 8px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  border-radius: 5px;
+.plan-card{
+  background:#0b1220;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #374151;
+  text-align:center;
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAV -->
 <div class="nav">
   <div class="logo">KUTIN FX</div>
+  <button class="logout" onclick="logout()">Logout</button>
+</div>
 
-  <div class="menu">
-    <a href="#">Home</a>
-    <a href="#">Deposit</a>
-    <a href="#">Withdraw</a>
-    <a href="#">VIP</a>
-    <button class="logout" onclick="logout()">Logout</button>
+<!-- HEADER -->
+<div class="header">
+
+  <div class="balance-box">
+    <h3>Welcome, <span id="user"></span></h3>
+    <p>Live Balance</p>
+    <div class="balance">$ <span id="balance">0</span></div>
   </div>
-</div>
 
-<div class="container">
+  <div class="grid">
+    <div class="card">💰 Deposit<br><button class="btn invest-btn">Invest</button></div>
+    <div class="card">🏧 Withdraw<br><button class="btn invest-btn">Request</button></div>
+    <div class="card vip">🔥 VIP</div>
 
-<!-- USER -->
-<div class="user-box">
-  <h3>Welcome, <span id="user"></span></h3>
-  <p>Status: Active</p>
-</div>
-
-<!-- CARDS -->
-<div class="grid">
-  <div class="card">💰 Deposit</div>
-  <div class="card">🏧 Withdraw</div>
-  <div class="card vip">🔥 VIP Section</div>
-
-  <div class="card">
-    📲 WhatsApp Group  
-    <button class="whatsapp" onclick="join()">Join Now</button>
+    <div class="card">
+      📲 WhatsApp
+      <button class="btn whatsapp-btn" onclick="join()">Join Group</button>
+    </div>
   </div>
 </div>
 
 <!-- INVEST -->
-<div class="invest">
-<h3>Deposit / Invest</h3>
+<div class="section">
 
-<input id="amount" type="number" placeholder="Enter amount">
+<div class="box">
+  <h3>Investment Calculator</h3>
 
-<select id="plan">
-  <option value="0.2">Starter (20%)</option>
-  <option value="0.5">Pro (50%)</option>
-  <option value="1">VIP (100%)</option>
-</select>
+  <input id="amount" type="number" placeholder="Enter amount">
 
-<button class="calc" onclick="calc()">Calculate</button>
+  <select id="plan">
+    <option value="0.2">Starter (20%)</option>
+    <option value="0.5">Pro (50%)</option>
+    <option value="1">VIP (100%)</option>
+  </select>
 
-<div class="result" id="result"></div>
+  <button class="btn invest-btn" onclick="calc()">Calculate</button>
+
+  <p id="result"></p>
 </div>
 
-<!-- INVESTMENT PLANS -->
-
-<h2 style="margin-top:40px;color:#38bdf8;">📊 Investment Plans</h2>
-
-<!-- 24 HOURS -->
-<div class="plan-box">
-  <h3 class="plan-title">⚡ 24 Hour Wealth Plans</h3>
-
+<!-- PLANS -->
+<div class="plan">
+  <h3>⚡ 24 Hour Plans</h3>
   <div class="plan-grid">
-    <div class="plan-card"><b>£400</b><br>➡ £8000</div>
-    <div class="plan-card"><b>£500</b><br>➡ £10000</div>
-    <div class="plan-card"><b>£600</b><br>➡ £12000</div>
-    <div class="plan-card"><b>£700</b><br>➡ £14000</div>
-    <div class="plan-card"><b>£800</b><br>➡ £16000</div>
+    <div class="plan-card">£400 → £8000</div>
+    <div class="plan-card">£500 → £10000</div>
+    <div class="plan-card">£600 → £12000</div>
+    <div class="plan-card">£700 → £14000</div>
+    <div class="plan-card">£800 → £16000</div>
   </div>
 </div>
 
-<!-- 3 DAYS -->
-<div class="plan-box">
-  <h3 class="plan-title gold">💎 3 Days Wealth Plans</h3>
-
+<div class="plan vip">
+  <h3>💎 3 Days Plans</h3>
   <div class="plan-grid">
-    <div class="plan-card"><b>£1000</b><br>➡ £30000</div>
-    <div class="plan-card"><b>£2000</b><br>➡ £60000</div>
-    <div class="plan-card"><b>£3000</b><br>➡ £90000</div>
-    <div class="plan-card"><b>£4000</b><br>➡ £120000</div>
-    <div class="plan-card"><b>£5000</b><br>➡ £150000</div>
+    <div class="plan-card">£1000 → £30000</div>
+    <div class="plan-card">£2000 → £60000</div>
+    <div class="plan-card">£3000 → £90000</div>
+    <div class="plan-card">£4000 → £120000</div>
+    <div class="plan-card">£5000 → £150000</div>
   </div>
 </div>
 
 </div>
 
 <script>
-// CHECK LOGIN
+
+// LOGIN CHECK
 let user = localStorage.getItem("loggedUser");
 
 if(!user){
   alert("Please login first");
   window.location.href = "index.html";
-} else {
+}else{
   document.getElementById("user").innerText = user;
 }
+
+// FAKE LIVE BALANCE
+let balance = 250;
+setInterval(()=>{
+  balance += Math.floor(Math.random()*5);
+  document.getElementById("balance").innerText = balance;
+},3000);
 
 // LOGOUT
 function logout(){
   localStorage.removeItem("loggedUser");
-  window.location.href = "index.html";
+  window.location.href="index.html";
 }
 
-// WHATSAPP
+// WHATSAPP (YOUR NUMBER)
 function join(){
-  window.open("https://wa.me/254700000000", "_blank");
+  window.open("https://wa.me/14315061916","_blank");
 }
 
 // CALCULATOR
@@ -272,18 +257,19 @@ function calc(){
   let amount = document.getElementById("amount").value;
   let rate = document.getElementById("plan").value;
 
-  if(amount === ""){
-    document.getElementById("result").innerText = "Enter amount";
+  if(amount===""){
+    document.getElementById("result").innerText="Enter amount";
     return;
   }
 
   let profit = amount * rate;
-  let total = Number(amount) + profit;
+  let total = Number(amount) + Number(profit);
 
   document.getElementById("result").innerText =
-    "Profit: $" + profit + " | Total: $" + total;
+  "Profit: $"+profit+" | Total: $"+total;
 }
+
 </script>
 
 </body>
-</html> 
+</html>
