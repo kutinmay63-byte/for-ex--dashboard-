@@ -1,0 +1,12 @@
+function deposit(){
+  let amount = prompt("Enter amount to deposit:");
+
+  if(!amount || amount <= 0){
+    alert("Enter valid amount");
+    return;
+  }
+
+  alert("Send KES " + amount + " via M-Pesa.\nThen confirm on WhatsApp.");
+
+  window.open("https://wa.me/14315061916","_blank");
+}
